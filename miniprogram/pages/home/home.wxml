@@ -1,0 +1,35 @@
+<view class="page">
+  <view class="hero">
+    <view><view class="hero-title">我们的小厨房</view><view class="hero-subtitle">今天想吃什么呀？</view></view>
+    <line-dog size="98"></line-dog>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading">正在准备今天的菜单…</view>
+  <block wx:else>
+    <view wx:if="{{pending}}" class="card empty">
+      <view class="empty-icon">🐾</view><view class="empty-title">等待家人同意加入</view>
+      <view class="muted">请让管理员在“我们俩”页面批准你</view>
+      <button class="btn secondary" style="margin-top:28rpx" bindtap="goMine">查看状态</button>
+    </view>
+
+    <block wx:else>
+      <view class="card family-card">
+        <view class="row between"><view><view class="title">你好，{{user.name || '家人'}}</view><view class="muted">今天也要一起好好吃饭</view></view><view class="paw">🐾</view></view>
+      </view>
+
+      <view wx:if="{{currentOrder}}" class="card">
+        <view class="row between"><view class="title">今天的饭单</view><view class="status">{{currentOrder.statusText}}</view></view>
+        <view class="dish-line" wx:for="{{currentOrder.items}}" wx:key="dishId">{{item.emoji}} {{item.name}} × {{item.count}}</view>
+        <button class="btn green" style="margin-top:24rpx" bindtap="goOrder">查看做饭进度</button>
+      </view>
+
+      <view wx:else class="card empty">
+        <view class="empty-icon">🍽️</view><view class="empty-title">今天还没有饭单</view>
+        <view class="muted">去菜单里挑几道喜欢的菜吧</view>
+        <button class="btn" style="margin-top:28rpx" bindtap="goMenu">去点菜</button>
+      </view>
+
+      <view class="card"><view class="title">家庭菜单</view><view class="muted">现在共有 {{dishes.length}} 道菜，所有已加入的家人都可以添加和修改。</view><view wx:if="{{categories.length}}"><text class="tag" wx:for="{{categories}}" wx:key="*this">{{item}}</text></view></view>
+    </block>
+  </block>
+</view>

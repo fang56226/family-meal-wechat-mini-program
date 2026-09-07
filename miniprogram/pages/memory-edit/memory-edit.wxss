@@ -1,0 +1,3 @@
+.memory-editor { padding-bottom:90rpx; }.editor-title { margin:12rpx 0 6rpx; font-size:44rpx; font-weight:800; }.editor-subtitle { margin-bottom:28rpx; color:#8b7d74; font-size:25rpx; line-height:1.5; }
+.photo-wrap { position:relative; }.remove { position:absolute; top:-10rpx; right:-10rpx; display:flex; align-items:center; justify-content:center; width:42rpx; height:42rpx; border:2rpx solid #473d37; border-radius:50%; background:#ffd1c7; font-weight:800; }.new-badge { position:absolute; left:8rpx; bottom:8rpx; padding:5rpx 10rpx; border-radius:999rpx; background:#bfe1c1; font-size:20rpx; font-weight:800; }
+.note-input { min-height:200rpx; }.editor-actions { display:grid; grid-template-columns:1fr 1fr; gap:22rpx; margin-top:34rpx; }

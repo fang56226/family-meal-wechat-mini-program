@@ -1,0 +1,28 @@
+<view class="page">
+  <view class="hero"><view><view class="hero-title">我们俩</view><view class="hero-subtitle">一起吃饭就是幸福</view></view><line-dog size="98"></line-dog></view>
+  <view wx:if="{{loading}}" class="loading">正在读取家庭成员…</view>
+  <block wx:elif="{{user}}">
+    <view class="card profile">
+      <view class="avatar">{{user.role === 'admin' ? '👑' : '🐾'}}</view>
+      <view class="profile-body"><view class="title">{{user.name || '新家人'}}</view><view class="muted">{{user.approved && user.enabled ? '已加入家庭' : '等待管理员批准'}}</view></view>
+    </view>
+    <view class="card">
+      <view class="title">我的名字</view><view class="muted">家人会在点单和做饭记录里看到</view>
+      <input class="input" value="{{name}}" bindinput="setName" placeholder="输入你的称呼" maxlength="12" />
+      <button class="btn secondary" style="margin-top:18rpx" bindtap="saveName">保存名字</button>
+    </view>
+    <view wx:if="{{user.role === 'admin'}}" class="card">
+      <view class="title">成员管理</view><view class="muted">只有你批准的人才能看到家庭菜单和照片</view>
+      <view class="member" wx:for="{{members}}" wx:key="_id">
+        <view><view class="member-name">{{item.name || '未设置名字'}} {{item._id === user._id ? '（我）' : ''}}</view><view class="muted">{{item.approved ? (item.enabled ? '已启用' : '已停用') : '等待批准'}}</view></view>
+        <view wx:if="{{item._id !== user._id}}">
+          <button wx:if="{{!item.approved}}" class="btn small green" data-id="{{item._id}}" data-operation="approve" bindtap="manage">批准</button>
+          <button wx:elif="{{item.enabled}}" class="btn small red" data-id="{{item._id}}" data-operation="disable" bindtap="manage">停用</button>
+          <button wx:else class="btn small green" data-id="{{item._id}}" data-operation="enable" bindtap="manage">启用</button>
+        </view>
+      </view>
+    </view>
+    <view wx:else class="card"><view class="title">家庭成员</view><view class="member" wx:for="{{members}}" wx:key="_id"><view>{{item.name || '家人'}}</view><view class="muted">{{item.role === 'admin' ? '管理员' : '家庭成员'}}</view></view></view>
+    <view class="privacy">🔒 所有菜单和照片仅对已批准的家庭成员可见</view>
+  </block>
+</view>

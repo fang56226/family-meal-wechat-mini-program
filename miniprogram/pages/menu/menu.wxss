@@ -1,0 +1,20 @@
+.with-cart { padding-bottom:160rpx; }
+.add-dish { margin-bottom:24rpx; }
+.category-title { display:flex; align-items:center; justify-content:space-between; margin:34rpx 6rpx 18rpx; font-size:34rpx; font-weight:800; }
+.category-count { padding:7rpx 15rpx; border-radius:999rpx; background:#ffe5ca; color:#7d6759; font-size:22rpx; font-weight:600; }
+.dish-card { display:flex; overflow:hidden; margin-bottom:24rpx; border:3rpx solid #473d37; border-radius:28rpx; background:#fff; box-shadow:6rpx 6rpx 0 #473d37; }
+.dish-photo,.dish-placeholder { width:220rpx; min-width:220rpx; height:260rpx; }
+.dish-placeholder { display:flex; align-items:center; justify-content:center; background:#fff1df; font-size:80rpx; }
+.dish-body { flex:1; padding:22rpx; min-width:0; }
+.dish-name { font-size:31rpx; font-weight:800; }
+.ingredients { margin-top:16rpx; color:#665951; font-size:24rpx; line-height:1.45; }
+.note { margin-top:8rpx; }
+.dish-actions { margin-top:20rpx; }
+.edit-link,.close { margin:0; padding:0; background:transparent; color:#a65d43; font-size:24rpx; }
+.edit-link::after,.close::after { border:0; }
+.stepper { display:flex; align-items:center; gap:18rpx; }
+.stepper button { display:flex; align-items:center; justify-content:center; width:58rpx; height:58rpx; margin:0; padding:0; border:3rpx solid #473d37; border-radius:50%; background:#ffe5ca; line-height:1; }
+.stepper button::after { border:0; }
+.cart-bar { position:fixed; z-index:5; left:22rpx; right:22rpx; bottom:20rpx; display:flex; align-items:center; justify-content:space-between; padding:18rpx 24rpx; border:3rpx solid #473d37; border-radius:26rpx; background:#fff; box-shadow:6rpx 6rpx 0 #473d37; }
+.cart-bar .btn { min-height:70rpx; }
+.cart-num { font-weight:800; }

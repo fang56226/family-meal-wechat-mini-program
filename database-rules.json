@@ -1,0 +1,5 @@
+{
+  "users": { "read": false, "write": false },
+  "dishes": { "read": false, "write": false },
+  "orders": { "read": false, "write": false }
+}

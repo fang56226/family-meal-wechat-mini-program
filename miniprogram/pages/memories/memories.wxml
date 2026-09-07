@@ -1,0 +1,16 @@
+<view class="page">
+  <view class="hero"><view><view class="hero-title">记录每顿饭</view><view class="hero-subtitle">认真吃过的每一顿饭</view></view><view class="hero-dog">📸</view></view>
+  <view wx:if="{{loading}}" class="loading">正在读取每顿饭记录…</view>
+  <view wx:elif="{{!allowed}}" class="card empty"><view class="empty-icon">🔒</view><view class="empty-title">仅家庭成员可见</view></view>
+  <view wx:elif="{{!memories.length}}" class="card empty"><line-dog size="124"></line-dog><view class="empty-title">还没有吃饭记录</view><view class="muted">完成第一顿饭后，照片会保存在这里</view></view>
+  <block wx:else>
+    <view class="memory-card" wx:for="{{memories}}" wx:for-item="memory" wx:key="_id">
+      <view class="row between"><view><view class="date">{{memory.finishedDate}}</view><view class="muted">{{memory.cookName}} 做饭</view></view><button class="edit-memory" data-id="{{memory._id}}" bindtap="editMemory">修改记录</button></view>
+      <view class="memory-grid photos-{{memory.photoURLs.length}}"><image wx:for="{{memory.photoURLs}}" wx:for-item="photo" wx:key="*this" src="{{photo}}" mode="aspectFill" data-src="{{photo}}" data-urls="{{memory.photoURLs}}" bindtap="preview" /></view>
+      <view class="meal-names">{{memory.itemNames}}</view>
+      <view wx:if="{{memory.memoryNote}}" class="memory-note">“{{memory.memoryNote}}”</view>
+      <view class="muted">由 {{memory.createdByName}} 点单</view>
+      <view wx:if="{{memory.memoryUpdatedByName}}" class="updated-tip">最近由 {{memory.memoryUpdatedByName}} 修改</view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,9 @@
+.streak { display:inline-flex; margin-top:16rpx; padding:8rpx 14rpx; border-radius:999rpx; background:#fff; font-size:22rpx; }
+.status { padding:8rpx 16rpx; border-radius:999rpx; font-size:23rpx; font-weight:800; }
+.s0 { background:#ffe5ca; }.s1 { background:#bfe1c1; }
+.ordered-dish { display:flex; gap:18rpx; padding:22rpx 0; border-bottom:2rpx dashed #e6d7ca; }
+.ordered-dish image,.mini-emoji { width:120rpx; height:120rpx; border-radius:18rpx; }
+.mini-emoji { display:flex; align-items:center; justify-content:center; background:#fff1df; font-size:48rpx; }
+.order-info { flex:1; min-width:0; }.dish-name { font-weight:800; }.order-info .muted { margin-top:8rpx; line-height:1.4; }
+.order-meta { margin-top:18rpx; }.finish-card { margin-top:26rpx; }
+.photo-wrap { position:relative; }.remove { position:absolute; top:-10rpx; right:-10rpx; display:flex; align-items:center; justify-content:center; width:42rpx; height:42rpx; border:2rpx solid #473d37; border-radius:50%; background:#ffd1c7; font-weight:800; }

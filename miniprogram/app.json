@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/menu/menu",
+    "pages/dish-edit/dish-edit",
+    "pages/order/order",
+    "pages/memories/memories",
+    "pages/memory-edit/memory-edit",
+    "pages/mine/mine"
+  ],
+  "window": {
+    "navigationBarTitleText": "我们的小厨房",
+    "navigationBarBackgroundColor": "#fff8ee",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#fff8ee",
+    "backgroundTextStyle": "dark"
+  },
+  "usingComponents": {
+    "line-dog": "/components/line-dog/line-dog"
+  },
+  "tabBar": {
+    "color": "#887b70",
+    "selectedColor": "#d87857",
+    "backgroundColor": "#fffdfa",
+    "borderStyle": "white",
+    "list": [
+      { "pagePath": "pages/home/home", "text": "首页" },
+      { "pagePath": "pages/menu/menu", "text": "点菜" },
+      { "pagePath": "pages/order/order", "text": "做饭" },
+      { "pagePath": "pages/memories/memories", "text": "记录每顿饭" },
+      { "pagePath": "pages/mine/mine", "text": "我们俩" }
+    ]
+  },
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+}

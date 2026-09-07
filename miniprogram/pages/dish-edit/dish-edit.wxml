@@ -1,0 +1,25 @@
+<view class="page editor-page">
+  <view class="editor-title">{{dishId ? '编辑这道菜' : '上传一道新菜'}}</view>
+  <view class="editor-subtitle">菜名、食材和分类都会实时显示，输入时页面不会再乱动。</view>
+
+  <view class="photo-picker" bindtap="pickPhoto">
+    <image wx:if="{{imageTemp || imageFileID}}" src="{{imageTemp || displayImageURL || imageFileID}}" mode="aspectFill" />
+    <view wx:else><view class="camera">📷</view><view>点击上传菜品照片</view></view>
+  </view>
+
+  <view class="field"><view class="label">菜名 *</view><textarea class="textarea short-textarea" value="{{name}}" data-field="name" bindinput="setField" placeholder="例如：可乐鸡翅" maxlength="30" cursor-spacing="120" /></view>
+  <view class="field"><view class="label">需要哪些食材 *</view><textarea class="textarea ingredients-input" value="{{ingredients}}" data-field="ingredients" bindinput="setField" placeholder="例如：鸡翅、可乐、生抽、姜片" maxlength="500" cursor-spacing="120" /></view>
+  <view class="field"><view class="label">做菜备注</view><textarea class="textarea" value="{{note}}" data-field="note" bindinput="setField" placeholder="例如：少盐、不放辣" maxlength="500" cursor-spacing="120" /></view>
+  <view class="field">
+    <view class="label">分类 *</view>
+    <view wx:if="{{categories.length}}" class="category-options">
+      <button wx:for="{{categories}}" wx:key="*this" class="category-chip {{!showNewCategory && category === item ? 'active' : ''}}" data-category="{{item}}" bindtap="selectCategory">{{item}}</button>
+      <button class="category-chip new" bindtap="addCategory">＋ 新分类</button>
+    </view>
+    <textarea wx:if="{{showNewCategory || !categories.length}}" class="textarea short-textarea" value="{{category}}" data-field="category" bindinput="setField" placeholder="输入新的分类名称" maxlength="20" cursor-spacing="120" />
+    <view wx:else class="selected-category">已选择：{{category}}</view>
+  </view>
+
+  <view class="editor-actions"><button class="btn secondary" bindtap="cancel">取消</button><button class="btn" loading="{{saving}}" disabled="{{saving}}" bindtap="save">保存</button></view>
+  <button wx:if="{{dishId}}" class="delete-link" bindtap="deleteDish">删除这道菜</button>
+</view>

@@ -1,0 +1,1 @@
+{ "desc": "仅家庭成员使用，不允许被搜索", "rules": [{ "action": "disallow", "page": "*" }] }

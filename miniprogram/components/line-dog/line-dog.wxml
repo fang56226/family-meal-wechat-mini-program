@@ -1,0 +1,13 @@
+<view class="line-dog" style="width:{{size}}rpx;height:{{size}}rpx;">
+  <view class="ear ear-left"></view>
+  <view class="ear ear-right"></view>
+  <view class="head">
+    <view class="eye eye-left"></view>
+    <view class="eye eye-right"></view>
+    <view class="muzzle">
+      <view class="nose"></view>
+      <view class="mouth mouth-left"></view>
+      <view class="mouth mouth-right"></view>
+    </view>
+  </view>
+</view>

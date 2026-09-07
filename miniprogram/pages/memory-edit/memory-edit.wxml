@@ -1,0 +1,16 @@
+<view class="page memory-editor">
+  <view class="editor-title">修改吃饭记录</view>
+  <view class="editor-subtitle">{{title}}</view>
+
+  <view class="card">
+    <view class="title">照片</view><view class="muted">可以删除旧照片或继续添加，最多9张</view>
+    <view class="photo-grid">
+      <view wx:for="{{existingPhotos}}" wx:key="fileID" class="photo-wrap"><image class="photo" src="{{item.url}}" mode="aspectFill" /><view class="remove" data-index="{{index}}" bindtap="removeExisting">×</view></view>
+      <view wx:for="{{newPhotos}}" wx:key="*this" class="photo-wrap"><image class="photo" src="{{item}}" mode="aspectFill" /><view class="new-badge">新</view><view class="remove" data-index="{{index}}" bindtap="removeNew">×</view></view>
+      <view wx:if="{{existingPhotos.length + newPhotos.length < 9}}" class="photo-add" bindtap="addPhotos">＋</view>
+    </view>
+  </view>
+
+  <view class="field"><view class="label">纪念文字</view><textarea class="textarea note-input" value="{{memoryNote}}" bindinput="setNote" placeholder="写一句今天的纪念（可不填）" maxlength="500" cursor-spacing="120" /></view>
+  <view class="editor-actions"><button class="btn secondary" bindtap="cancel">取消</button><button class="btn" loading="{{saving}}" disabled="{{saving}}" bindtap="save">保存修改</button></view>
+</view>

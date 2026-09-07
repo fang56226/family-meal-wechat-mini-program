@@ -1,0 +1,28 @@
+<view class="page with-cart">
+  <view class="hero"><view><view class="hero-title">家庭菜单</view><view class="hero-subtitle">想吃什么就点什么</view></view><view class="hero-dog">🥘</view></view>
+  <view wx:if="{{loading}}" class="loading">正在读取菜单…</view>
+  <view wx:elif="{{!allowed}}" class="card empty"><view class="empty-icon">🔒</view><view class="empty-title">批准后才能使用菜单</view></view>
+  <block wx:else>
+    <button class="btn secondary add-dish" bindtap="openAdd">＋ 上传一道新菜</button>
+    <view wx:if="{{!dishes.length}}" class="card empty"><line-dog size="124"></line-dog><view class="empty-title">菜单还是空的</view><view class="muted">第一道菜由你来添加吧</view></view>
+    <block wx:for="{{dishGroups}}" wx:for-item="group" wx:key="category">
+      <view class="category-title"><text>{{group.category}}</text><text class="category-count">{{group.dishes.length}} 道</text></view>
+      <view class="dish-card" wx:for="{{group.dishes}}" wx:for-item="dish" wx:key="_id">
+        <image wx:if="{{dish.imageFileID}}" class="dish-photo" src="{{dish.displayImageURL || dish.imageFileID}}" mode="aspectFill" bindtap="openEdit" data-id="{{dish._id}}" />
+        <view wx:else class="dish-placeholder" bindtap="openEdit" data-id="{{dish._id}}">{{dish.emoji}}</view>
+        <view class="dish-body">
+          <view class="dish-name">{{dish.name}}</view>
+          <view class="ingredients">需要：{{dish.ingredients}}</view>
+          <view wx:if="{{dish.note}}" class="muted note">备注：{{dish.note}}</view>
+          <view class="row between dish-actions">
+            <button class="edit-link" bindtap="openEdit" data-id="{{dish._id}}">编辑</button>
+            <view class="stepper"><button data-id="{{dish._id}}" data-delta="-1" bindtap="changeCount">−</button><text>{{cart[dish._id] || 0}}</text><button data-id="{{dish._id}}" data-delta="1" bindtap="changeCount">＋</button></view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </block>
+
+  <view wx:if="{{allowed && cartCount}}" class="cart-bar"><view class="cart-num">已选 {{cartCount}} 份</view><button class="btn" loading="{{ordering}}" bindtap="createOrder">直接下单</button></view>
+
+</view>

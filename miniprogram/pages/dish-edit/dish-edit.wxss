@@ -1,0 +1,15 @@
+.editor-page { padding-bottom:90rpx; }
+.editor-title { margin:12rpx 0 6rpx; font-size:44rpx; font-weight:800; }
+.editor-subtitle { margin-bottom:28rpx; color:#8b7d74; font-size:24rpx; line-height:1.5; }
+.photo-picker { display:flex; align-items:center; justify-content:center; height:360rpx; margin-bottom:32rpx; overflow:hidden; border:3rpx dashed #927f70; border-radius:26rpx; background:#fff1df; text-align:center; }
+.photo-picker image { width:100%; height:100%; }
+.camera { margin-bottom:10rpx; font-size:64rpx; }
+.ingredients-input { min-height:170rpx; }
+.short-textarea { min-height:96rpx; height:96rpx; line-height:52rpx; }
+.category-options { display:flex; flex-wrap:wrap; gap:14rpx; margin-top:16rpx; }
+.category-chip { display:inline-flex; width:auto; min-height:66rpx; margin:0; padding:0 22rpx; border:3rpx solid #473d37; border-radius:999rpx; background:#fff; color:#473d37; font-size:25rpx; line-height:66rpx; }
+.category-chip::after { border:0; }.category-chip.active { background:#f5b98f; font-weight:800; }.category-chip.new { border-style:dashed; }
+.selected-category { margin-top:16rpx; color:#a65d43; font-size:25rpx; font-weight:700; }
+.editor-actions { display:grid; grid-template-columns:1fr 1fr; gap:22rpx; margin-top:34rpx; }
+.delete-link { margin-top:34rpx; background:transparent; color:#bd5748; font-size:25rpx; }
+.delete-link::after { border:0; }

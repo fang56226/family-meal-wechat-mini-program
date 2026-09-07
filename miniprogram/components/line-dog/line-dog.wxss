@@ -1,0 +1,11 @@
+.line-dog { position:relative; display:inline-block; vertical-align:middle; }
+.head { position:absolute; z-index:2; left:14%; top:17%; width:72%; height:67%; box-sizing:border-box; border:5rpx solid #473d37; border-radius:48% 48% 46% 46%; background:#fffaf3; }
+.ear { position:absolute; z-index:1; top:20%; width:29%; height:47%; box-sizing:border-box; border:5rpx solid #473d37; background:#ffe4c6; }
+.ear-left { left:2%; border-radius:65% 30% 65% 55%; transform:rotate(18deg); }
+.ear-right { right:2%; border-radius:30% 65% 55% 65%; transform:rotate(-18deg); }
+.eye { position:absolute; top:34%; width:8%; height:10%; border-radius:50%; background:#473d37; }
+.eye-left { left:27%; }.eye-right { right:27%; }
+.muzzle { position:absolute; left:29%; bottom:8%; width:42%; height:38%; box-sizing:border-box; border:4rpx solid #473d37; border-radius:50%; background:#fff; }
+.nose { position:absolute; left:35%; top:17%; width:30%; height:24%; border-radius:55% 55% 65% 65%; background:#473d37; }
+.mouth { position:absolute; top:43%; width:24%; height:25%; border-bottom:3rpx solid #473d37; }
+.mouth-left { left:27%; border-radius:0 0 0 100%; transform:rotate(12deg); }.mouth-right { right:27%; border-radius:0 0 100% 0; transform:rotate(-12deg); }

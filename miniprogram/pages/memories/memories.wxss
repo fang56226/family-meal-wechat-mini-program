@@ -1,0 +1,7 @@
+.memory-card { margin-bottom:28rpx; padding:24rpx; border:3rpx solid #473d37; border-radius:28rpx; background:#fff; box-shadow:6rpx 6rpx 0 #473d37; }
+.date { font-size:29rpx; font-weight:800; }
+.memory-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8rpx; margin:20rpx 0; overflow:hidden; border-radius:20rpx; }
+.memory-grid image { width:100%; height:190rpx; }.memory-grid.photos-1 { grid-template-columns:1fr; }.memory-grid.photos-1 image { height:420rpx; }
+.meal-names { font-size:28rpx; font-weight:800; line-height:1.5; }.memory-note { margin:12rpx 0; color:#a65d43; font-size:27rpx; line-height:1.5; }
+.edit-memory { display:inline-flex; min-height:58rpx; margin:0; padding:0 18rpx; border:3rpx solid #473d37; border-radius:16rpx; background:#fff1df; color:#a65d43; font-size:23rpx; line-height:58rpx; font-weight:800; }
+.edit-memory::after { border:0; }.updated-tip { margin-top:8rpx; color:#a99588; font-size:21rpx; }
