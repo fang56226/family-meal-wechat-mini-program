@@ -1,44 +1,132 @@
-# 我们的小厨房（微信小程序完整工程）
+# Our Little Kitchen
 
-这是一个只供家人使用的家庭点菜小程序。所有数据、菜品照片和每顿饭的纪念照都保存在你自己的微信云开发环境中。
+A private, serverless WeChat Mini Program designed for collaborative meal planning and dining records within a family.
 
-## 已完成的功能
+Family members can maintain a shared menu, place meal orders, manage cooking progress, upload food photos, and preserve memories of each meal. The application is intended for private family use rather than public commercial distribution.
 
-- 家庭成员申请加入，首位进入者自动成为管理员；之后由管理员批准/停用成员。
-- 所有获准成员都能新增、编辑、下架家庭菜单；已有分类可以直接选择，新分类只需创建一次。
-- 新增菜品时可拍照或从相册选图，并填写“所需食材”和“口味/做法备注”。
-- 从菜单选择菜品后直接生成本顿饭单，不需要积分或付款。
-- 家人可接单；完成后必须上传 1–9 张成品/聚餐照片，可附一句纪念文字。
-- 完成的每顿饭自动进入“记录每顿饭”，保留当时的菜名、食材备注、点单人、做饭人和照片；之后可以修改纪念文字并增删照片。
-- 已批准的家庭成员会通过云函数取得照片临时地址，因此即使免费环境不能设置“所有用户可读”，也能互相查看菜品照片和每顿饭照片。
-- 数据库完全禁止小程序前端直接读写，所有业务都经过云函数校验成员身份。
+## Key Features
 
-## 第一次部署（按顺序操作）
+* **Family membership management**
 
-1. 打开微信开发者工具，选择“导入项目”，目录选这个解压后的 `family-kitchen` 文件夹，并填写你自己的小程序 AppID。
-2. 在开发者工具顶部点击“云开发”，创建一个云环境。`app.js` 会自动使用当前云环境，不需要手填环境 ID。
-3. 在云开发数据库中创建 3 个集合：`users`、`dishes`、`orders`。
-4. 把这 3 个集合的权限都设为“所有用户不可读写”。项目根目录的 `database-rules.json` 是对应规则参考。
-5. 云存储保持免费环境的默认权限即可；每位成员仍可上传自己的照片，其他已批准成员由云函数取得临时显示地址，不需要购买套餐来开放公共读取。
-6. 回到编辑器，找到 `cloudfunctions/familyApi` 文件夹，右键选择“上传并部署：云端安装依赖”。等待提示部署成功。
-7. 点击“编译”。你第一次进入会自动成为家庭管理员；先到“我们俩”修改名字。
-8. 让家人通过体验版/正式版进入。家人首次进入会显示等待批准；你在“我们俩 → 成员管理”点“批准”后，对方重新进入即可使用。
+  * The first user becomes the administrator.
+  * New members must be approved before accessing family data.
+  * Administrators can approve, disable, and manage members.
 
-## 照片怎么用
+* **Shared menu management**
 
-- 菜品照片：`点菜 → 上传一道新菜 → 上传菜品照片`。
-- 当餐纪念照：`做饭 → 我来做这顿饭 → 上传完成照 → 完成并记录这顿饭`。
-- 照片上传时可直接拍照，也可从手机相册选择；当餐照片最多 9 张。
+  * Approved members can create, edit, and remove dishes.
+  * Each dish can include a photo, ingredient list, cooking notes, and category.
+  * Previously created categories can be reused when adding new dishes.
 
-## 发布给家人
+* **Direct meal ordering**
 
-开发者工具右上角点“上传”，到微信公众平台提交体验版或审核发布。只把体验成员/小程序入口给家人，并在小程序后台维护成员范围即可。这个项目没有微信支付，也不会向公众展示菜单。
+  * Family members can select dishes and create a meal order directly.
+  * No payment or virtual-point system is required.
+  * Dish quantities can be adjusted before ordering.
 
-## 常见问题
+* **Cooking workflow**
 
-- 点击照片没反应：确认使用真机预览；模拟器无法完整模拟手机相册权限。
-- 提示“云函数不存在”：重新右键 `familyApi`，选择“上传并部署：云端安装依赖”。
-- 照片上传失败：检查云开发存储权限，以及当前 AppID 是否就是开通该云环境的 AppID。
-- 家人一直看不到菜单：管理员需要在“我们俩 → 成员管理”批准，并让对方下拉刷新或重新打开。
-- 家人能看到记录但看不到对方照片：确认已部署最新版 `familyApi` 云函数；只重新编译前端不会生效。部署后双方重新进入或下拉刷新，已有照片无需重新上传。
-- 更换 AppID 后云环境报错：重新选择/开通该 AppID 名下的云开发环境，再部署一次云函数。
+  * The cook can view the current order and its selected dishes.
+  * Orders progress through preparation and completion states.
+  * The application records the person who placed the order and the person who prepared it.
+
+* **Meal memories**
+
+  * Completed meals can include 1–9 photos and a short caption.
+  * Meal records preserve dishes, participants, timestamps, notes, and photos.
+  * Existing records can be edited and their photos can be added or removed.
+
+* **Cross-user photo sharing**
+
+  * Approved family members can view dish and meal photos uploaded by one another.
+  * Cloud functions generate temporary authorised URLs for shared cloud-storage files.
+
+## Technology Stack
+
+* WeChat Mini Program
+* JavaScript
+* WXML and WXSS
+* WeChat Cloud Development
+* Cloud Database
+* Cloud Storage
+* Node.js Cloud Functions
+
+## Architecture
+
+The project uses a serverless architecture based on WeChat Cloud Development:
+
+```text
+WeChat Mini Program
+        |
+        v
+Node.js Cloud Functions
+        |
+        +-- Cloud Database
+        +-- Cloud Storage
+```
+
+The client does not directly modify protected database records. Business operations are processed through cloud functions, which validate membership and permissions before accessing shared family data.
+
+## Project Structure
+
+```text
+.
+├── cloudfunctions/
+│   └── familyApi/          # Backend business logic and permission checks
+├── miniprogram/
+│   ├── components/         # Reusable interface components
+│   ├── pages/              # Mini Program pages
+│   ├── utils/              # API utilities
+│   ├── app.js
+│   ├── app.json
+│   └── app.wxss
+├── database-rules.json     # Database security-rule reference
+├── storage-rules.json      # Cloud-storage security-rule reference
+├── project.config.json     # WeChat Developer Tools configuration
+└── README.md
+```
+
+## Cloud Database Collections
+
+The application uses three primary collections:
+
+* `users` — family members, roles, approval status, and display names
+* `dishes` — menu items, ingredients, notes, categories, and photo references
+* `orders` — selected dishes, order status, cooking information, and meal records
+
+## Local Setup
+
+1. Clone or download this repository.
+2. Open WeChat Developer Tools.
+3. Select **Import Project**.
+4. Choose the downloaded project directory.
+5. Replace `touristappid` in `project.config.json` with your own Mini Program AppID.
+6. Enable WeChat Cloud Development and create a cloud environment.
+7. Create the following database collections:
+
+   * `users`
+   * `dishes`
+   * `orders`
+8. Configure the database rules using `database-rules.json` as a reference.
+9. Configure cloud-storage permissions using `storage-rules.json` as a reference.
+10. Right-click `cloudfunctions/familyApi` and select **Upload and Deploy: Cloud Installation of Dependencies**.
+11. Compile and run the Mini Program.
+
+The first user who opens the application becomes the family administrator. Additional users must be approved from the member-management page.
+
+## Privacy and Security
+
+* The application is designed for a small, private group of approved family members.
+* Database access is protected through cloud functions and membership validation.
+* Uploaded photos and production database records are not included in this repository.
+* Private configuration files, AppSecrets, access tokens, and other credentials must never be committed to GitHub.
+* The public repository uses `touristappid`; developers should provide their own AppID locally.
+
+## Status
+
+The application has been implemented and tested on real mobile devices with multiple family accounts.
+
+## Author
+
+**Yijun Fang**
+BA Philosophy and Computer Science, University College London
